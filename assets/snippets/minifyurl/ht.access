@@ -1,0 +1,5 @@
+RewriteRule ^min/?_v=\d{10}&([a-z]=.*\.(js|css))$ min/?$1
+RewriteRule ^(min) - [L]
+
+#Include the above rules before
+# RewriteRule ^(.*)$ index.php?q=$1 [L,QSA]
