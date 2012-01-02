@@ -1,8 +1,21 @@
 The files in this directory represent a default setup of minifyUrl for
-ModX Evolution (http://modx.com/evolution/).
+ModX Evolution (http://modx.com/evolution/). A copy of minify is also included
+(http://code.google.com/p/minify/).
 
-THIS SNIPPET IS NOT SUPPORTED BY MODX REVOLUTION. Feel free to modify it for use
-with ModX Revolution.
+DESCRIPTION
+
+	This snippet makes it possible to use minify with ModX Evolution (ModX Revolution
+	is not currently supported). It also supports file versioning within the url
+	which is based on file modification times in order to prevent annoying browser
+	caching of js and css files.
+
+	Example:
+		<script src="/assets/js/example.js"></script>
+
+		becomes...
+
+		<script src="/min/?_v=1234567890&f=assets/js/example.js"></script>
+
 
 SETUP
 
@@ -29,7 +42,9 @@ USAGE
 		<script src="[!MinifyUrl? &files=`assets/js/jquery.js,assets/js/jquery.innerfade.js`!]"
 			type="text/javascript" charset="utf-8"></script>
 
+	To turn off versioning, simple add &useVersion=`false` to the snippet call.
+
 LIMITATIONS
 
 	Because there really isn't a way to "version" minify groups, versioning is
-	not supported for groups, only files.
+	not supported for groups, only files. Read more about minify at http://code.google.com/p/minify/.
