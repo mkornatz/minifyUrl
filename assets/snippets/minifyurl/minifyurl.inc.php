@@ -5,22 +5,21 @@
  * @version 1.0
  * @author Matt Kornatz mkornatz.com
  * @date Jan 2, 2012
- * @description
- *
- * Example request that is built (requres .htaccess to be modified. See ht.access file)
- * /min/?_v=1234567890&f=assets/css/style.css
  */
 
+	//Variables
 	$groups = isset($groups) ? explode(',', $groups) : array();
 	$files = isset($files) ? explode(',', $files) : array();
+
+	$useVersion = isset($useVersion) ? $useVersion : true; //default to true
+	if($useVersion == 0 || $useVersion == 'false'){
+		$useVersion = false;
+	}
 
 	//If no files or groups specified, don't do anything
 	if(empty($files) && empty($groups)){
 		echo '#';
 	}
-
-	//Variables
-	$useVersion = isset($useVersion) ? $useVersion : true; //default to true
 
 	//Core class
 	include_once dirname(__FILE__) . '/core/minifyurl.class.php';
