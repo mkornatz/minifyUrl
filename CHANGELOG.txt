@@ -1,0 +1,4 @@
+MinifyUrl v1.0b
+===============
+* Using Minify 2.1.3
+* Initial release

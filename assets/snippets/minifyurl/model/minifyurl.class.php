@@ -1,16 +1,39 @@
 <?php
-
+/**
+ * @package MinifyUrl
+ */
 class MinifyUrl {
 
-	protected $_config = array();
+	protected $_scriptProperties = array();
 	protected $_files = array();
 	protected $_groups = array();
 
 	/**
-	 *
+	 * Initialize
 	 */
-	public function __construct($config){
-		$this->_config = $config;
+	public function __construct($modx, $scriptProperties){
+
+		$this->_scriptProperties = $scriptProperties;
+
+		//Accept string 'false' or 'off' as valid
+		switch(@$this->_scriptProperties['fileVersions']){
+			case 'false':
+			case 'off':
+			case false:
+				$this->_scriptProperties['fileVersions'] = false;
+				break;
+
+			default:
+				$this->_scriptProperties['fileVersions'] = true;
+		}
+
+		//Set base path
+		if(!isset($this->_scriptProperties['baseFilePath'])){
+			$this->_scriptProperties['baseFilePath'] = $modx->config['base_path'];
+		}
+
+		$this->addFiles($this->_scriptProperties['files']);
+		$this->addGroups($this->_scriptProperties['groups']);
 	}
 
 	/**
@@ -41,40 +64,46 @@ class MinifyUrl {
 	 * @param string $file Filename
 	 */
 	protected function getVersion($file){
-		return filemtime($this->_config['baseFilePath'] . $file);
+		return filemtime($this->_scriptProperties['baseFilePath'] . $file);
 	}
 
 	/**
 	 * Render uri
 	 */
-	public function render(){
+	public function run(){
 
+		//Return # for url if nothing specified
 		if(empty($this->_files) && empty($this->_groups)){
-			return false;
+			return '#';
 		}
 
-		$output = $this->_config['minPath'];
+		$output = $this->_scriptProperties['minPath'] . '?';
 
 		//Is versioning on and files specified?
-		if($this->_config['useVersion'] && !empty($this->_files)){
+		if($this->_scriptProperties['fileVersions'] && !empty($this->_files)){
 
-			$version = 0;
+			$version = '';
 
 			foreach($this->_files as $file){
 				$version += $this->getVersion($file);
 			}
 
 			//Use last 10 digits of total, and get 10 digits max
-			$output .= '?_v=' . substr($version, -10, 10) . '&';
+			$queryParts[] = '_v=' . substr($version, -10, 10);
+
 		}
 
+		//Files to include
 		if(!empty($this->_files)){
-			$output .= 'f=' . implode(',', $this->_files);
+			$queryParts[] = 'f=' . implode(',', $this->_files);
 		}
 
+		//Groups to include
 		if(!empty($this->_groups)){
-			$output .= 'g=' . implode(',', $this->_groups);
+			$queryParts[] =  'g=' . implode(',', $this->_groups);
 		}
+
+		$output .= implode('&', $queryParts);
 
 		return $output;
 	}
