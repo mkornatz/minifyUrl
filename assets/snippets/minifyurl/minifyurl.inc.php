@@ -2,7 +2,7 @@
 
 /**
  * Minify snippet with versioning
- * @version 1.0
+ * @version 1.1b
  * @author Matt Kornatz mkornatz.com
  * @date Jan 2, 2012
  */
@@ -10,6 +10,7 @@
 	//Variables
 	$groups = isset($groups) ? explode(',', $groups) : array();
 	$files = isset($files) ? explode(',', $files) : array();
+	$minPath = isset($minPath) ? $minPath : '/min';
 
 	$useVersion = isset($useVersion) ? $useVersion : true; //default to true
 	if($useVersion == 0 || $useVersion == 'false'){
@@ -22,10 +23,10 @@
 	}
 
 	//Core class
-	include_once dirname(__FILE__) . '/core/minifyurl.class.php';
+	include_once dirname(__FILE__) . '/model/minifyurl.class.php';
 
 	//Prepare config
-	$config = array('minPath' => '/min/',
+	$config = array('minPath' => $minPath,
 									'baseFilePath' => $modx->config['base_path'],
 									'useVersion' => $useVersion);
 
