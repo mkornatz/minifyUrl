@@ -23,7 +23,7 @@ SETUP
 		installation.
 
 	* Modify your .htaccess file in the webroot directory using the rules in
-		assets/snippets/minifyurl/ht.access
+		the ht.access file
 
 	* Add the snippet code from minifyurl.snippet.php to a new snippet in the
 		ModX manager.
