@@ -43,10 +43,10 @@ USAGE
 			type="text/javascript" charset="utf-8"></script>
 
   Params:
-				&fileVersions - Turn on/off versioning for files (defaults to on)
-				&groups - Which minify groups to include in the url
-				&files - Which files to include in the url
-				&minPath - The path of the minify directory (defaults to '/min')
+	&fileVersions - Turn on/off versioning for files (defaults to on)
+	&groups - Which minify groups to include in the url
+	&files - Which files to include in the url
+	&minPath - The path of the minify directory (defaults to '/min')
 
 UPGRADING
 
