@@ -19,28 +19,25 @@ DESCRIPTION
 SETUP
 
 	* Copy assets/snippets/minifyurl to your snippets directory in your ModX
-		installation.
+	installation.
 
 	* Modify your .htaccess file in the webroot directory using the "# Minify URLs"
-    rules in the ht.access file. A full default .htaccess file is included, but
-    only 2 rules are necessary to be added for MinifyUrl to work correctly.
+	rules in the ht.access file. A full default .htaccess file is included, but
+	only 2 rules are necessary to be added for MinifyUrl to work correctly.
 
 	* Add the snippet code from minifyurl.snippet.php to a new snippet in the
-		ModX manager.
+	ModX manager.
 
 USAGE
 
 	For css files:
-		<link href="[!MinifyUrl? &files=`assets/css/style.css`]" rel="stylesheet"
-			type="text/css" />
+		<link href="[!MinifyUrl? &files=`assets/css/style.css`]" rel="stylesheet" type="text/css" />
 
 	For js files:
-		<script src="[!MinifyUrl? &files=`assets/js/jquery.js`!]"
-			type="text/javascript" charset="utf-8"></script>
+		<script src="[!MinifyUrl? &files=`assets/js/jquery.js`!]" type="text/javascript" charset="utf-8"></script>
 
 	To include multiple files, just deliminate files with a comma:
-		<script src="[!MinifyUrl? &files=`assets/js/jquery.js,assets/js/jquery.innerfade.js`!]"
-			type="text/javascript" charset="utf-8"></script>
+		<script src="[!MinifyUrl? &files=`assets/js/jquery.js,assets/js/jquery.innerfade.js`!]" type="text/javascript" charset="utf-8"></script>
 
   Params:
 	&fileVersions - Turn on/off versioning for files (defaults to on)
@@ -50,9 +47,9 @@ USAGE
 
 UPGRADING
 
-    Upgrading minify should be fairly straightforward. You should be able to just
-		replace the /min directory in the webroot. There is no guarantees though. Be
-		careful to test everything yourself or check for updated versions of MinifyUrl.
+  Upgrading minify should be fairly straightforward. You should be able to just
+	replace the /min directory in the webroot. There is no guarantees though. Be
+	careful to test everything yourself or check for updated versions of MinifyUrl.
 
 LIMITATIONS
 
